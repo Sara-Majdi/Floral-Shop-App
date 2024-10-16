@@ -64,7 +64,7 @@ const Carousel = () => {
                 <div 
                     key={slideIndex} 
                     onClick={() => goToSlide(slideIndex)} 
-                    className='text-lg cursor-pointer'>
+                    className={`text-lg cursor-pointer ${slideIndex == currentIndex ? "text-black" : "text-pink-400"}`}>
                     <GoDotFill />
                 </div>
             ))}
