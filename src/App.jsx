@@ -5,6 +5,7 @@ import BestSeller from './components/BestSeller'
 import CategorySection from './components/CategorySection'
 import FAQ from './components/FAQ'
 import ContactUsSection from './components/ContactUsSection'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <CategorySection/>
       <FAQ/>
       <ContactUsSection/>
+      <Footer/>
       
     </div>
   )

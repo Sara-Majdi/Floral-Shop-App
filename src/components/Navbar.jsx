@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FiMenu } from 'react-icons/fi'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -18,7 +19,11 @@ const Navbar = () => {
             <div className='flex justify-between items-center h-16'>
                 <div>
                     <a href="/">
-                        <h1 className='text-2xl font-bold'>Sora Flora</h1>
+                        <h1 className='text-2xl font-bold'>
+                            <Link to={"/"}>
+                                Sora Flora
+                            </Link>
+                        </h1>
                     </a>
                 </div>
             
