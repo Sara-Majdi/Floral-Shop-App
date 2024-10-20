@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import About from './pages/About.jsx'
+import Bouquet from './pages/Bouquet.jsx'
 
 const Layout = () => {
   return (
@@ -26,10 +27,10 @@ const router = createBrowserRouter([
         path:'/about',
         element: <About />,
       },
-      // {
-      //   path:'/',
-      //   element: <App />,
-      // },
+      {
+         path:'/bouquet',
+         element: <Bouquet />,
+      },
       // {
       //   path:'/',
       //   element: <App />,

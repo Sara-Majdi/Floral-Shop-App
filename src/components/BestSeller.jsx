@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const BestSeller = () => {
 
@@ -8,6 +9,7 @@ const BestSeller = () => {
           imageUrl: 'https://50gram.com.my/wp-content/uploads/2024/09/Blossom-Clutch-1-1024x1024.jpg.webp',
           title: 'Product 1',
           buttonText: 'Shop Flower Bouquets',
+          link: '/bouquet'
         },
         {
           id: 2,
@@ -27,7 +29,7 @@ const BestSeller = () => {
 
   return (
     <div className='mt-9'>
-        <div className='h-12 bg-pink-300 text-lg text-white font-bold flex justify-center items-center'>
+        <div className='h-12 w-full bg-pink-300 text-lg text-white font-bold flex justify-center items-center'>
             Categories
         </div>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4'>
@@ -39,9 +41,11 @@ const BestSeller = () => {
               className='w-full h-48 object-cover'
             />
             <div className='absolute bottom-0 left-0 right-0 bg-white bg-opacity-45 text-center py-2'>
-              <button className='bg-pink-500 text-white px-4 py-2 mt-2 rounded'>
-                {product.buttonText}
-              </button>
+              <Link to={product.link}>
+                <button className='bg-pink-500 text-white px-4 py-2 mt-2 rounded'>
+                  {product.buttonText}
+                </button>
+              </Link>
             </div>
           </div>
         ))}
