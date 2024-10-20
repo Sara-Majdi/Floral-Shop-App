@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import About from './pages/About.jsx'
 import Bouquet from './pages/Bouquet.jsx'
+import ProductDetailsPage from './pages/ProductDetailsBouquet.jsx'
 
 const Layout = () => {
   return (
@@ -31,10 +32,10 @@ const router = createBrowserRouter([
          path:'/bouquet',
          element: <Bouquet />,
       },
-      // {
-      //   path:'/',
-      //   element: <App />,
-      // },
+      {
+        path:'/productDetailsBouquet',
+        element: <ProductDetailsPage />,
+      },
       // {
       //   path:'/',
       //   element: <App />,
