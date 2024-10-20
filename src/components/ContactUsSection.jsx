@@ -12,8 +12,8 @@ const ContactUsSection = () => {
             Contact Us
         </div>
 
-        <section className="flex justify-center items-center w-full mt-4">
-        <form onSubmit={onSubmit} className="w-full max-w-lg font-inter shadow-xl rounded-md pb-8">
+        <section className="flex justify-center items-center w-full mt-4 px-4 sm:px-0">
+        <form onSubmit={onSubmit} className="w-full max-w-lg font-inter rounded-md pb-8">
           <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
             <div className="w-full">
               <label className='font-semibold text-xl' htmlFor="name">Name</label>

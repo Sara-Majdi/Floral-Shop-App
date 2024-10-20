@@ -82,13 +82,16 @@ const FAQ = () => {
         </div>
         <div>
           {/* Map through the items array to render AccordionItem components */}
-          {items.map((item, index) => (
-            <AccordionItem 
-              key={index}
-              question={item.question} 
-              answer={item.answer} 
-            />
-          ))}
+          <div className='px-4 lg:px-96'>
+            {items.map((item, index) => (
+                <AccordionItem 
+                key={index}
+                question={item.question} 
+                answer={item.answer} 
+                />
+            ))}
+          </div>
+            
         </div>
     </div>
   )
