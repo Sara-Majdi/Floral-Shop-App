@@ -2,6 +2,7 @@ import React from 'react';
 import Bouquet from '../assets/images/Bouquet_01.jpg'
 
 // Sample product data
+// creating product object where each product has it's own details 
 const products = [
   {
     id: 1,
@@ -50,6 +51,7 @@ const products = [
 const ProductList = () => {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-9">
+      {/* going through evrey single product in the "products object" */}
       {products.map((product) => (
         <a 
           href="#" 
