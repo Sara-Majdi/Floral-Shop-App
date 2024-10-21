@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ShareSocialLinks from '../components/ShareSocialLinks'; 
-import Counter from '../components/Counter';
+import ShareSocialLinks from './ShareSocialLinks'; 
+import Counter from './Counter';
 import Bouquet from '../assets/images/Bouquet_01.jpg'
 
-const ProductDetailsPage = () => {
+const ProductDetailsBouquet = () => {
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedImg, setSelectedImg] = useState(0);
 
@@ -14,6 +14,7 @@ const ProductDetailsPage = () => {
         productDescription: 'A beautiful bouquet of handpicked roses, perfect for any occasion.',
         productImages: [
             Bouquet,
+            'https://bambooflorist.com.my/cdn/shop/files/FrenchPoppy.jpg?v=1725509634&width=1800',
             'https://bambooflorist.com.my/cdn/shop/files/FrenchPoppy.jpg?v=1725509634&width=1800',
         ],
         productSizes: ['Small', 'Medium', 'Large'],
@@ -92,4 +93,4 @@ const ProductDetailsPage = () => {
     );
 };
 
-export default ProductDetailsPage;
+export default ProductDetailsBouquet;

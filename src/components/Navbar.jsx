@@ -7,7 +7,7 @@ const Navbar = () => {
     const [ isMenuOpen, setIsMenuOpen ] =useState(false);
 
     const menuItems = [
-        {name: 'Bouquet' , href:'#bouquet'},
+        {name: 'Bouquet' , href:'/bouquet'},
         {name: 'Vase', href:'#vase'},
         {name: 'Basket', href:'#basket'},
         {name: 'Box', href:'#box'}
