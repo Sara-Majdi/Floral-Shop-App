@@ -8,7 +8,6 @@ function Bouquet() {
   return (
     <div>
         <Navbar/>
-        <FilterAndSort/>
         <ProductList/>
         <Footer/>
     </div>

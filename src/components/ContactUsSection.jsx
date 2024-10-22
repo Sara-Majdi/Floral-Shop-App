@@ -29,7 +29,7 @@ const ContactUsSection = () => {
             <div className="w-full">
               <label className='font-semibold text-xl' htmlFor="email">Email Address</label>
               <input
-                type="email" // Changed type to 'email' for better validation
+                type="email"
                 className="w-full h-[50px] border border-gray-400 rounded-md p-3 text-lg mt-2"
                 placeholder="Enter Your Email"
                 name="email"

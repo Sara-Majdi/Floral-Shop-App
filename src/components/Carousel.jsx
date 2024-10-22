@@ -19,10 +19,12 @@ const Carousel = () => {
         },
     ]
 
+    //holds the current index at 0
     const [currentIndex, setCurrentIndex] = useState(0)
 
     const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;
+        //if current slide is the 1st
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
     }
@@ -33,6 +35,7 @@ const Carousel = () => {
         setCurrentIndex(newIndex);
     }
 
+    //function allows 
     const goToSlide = (slideIndex) => {
         setCurrentIndex(slideIndex)
     }
