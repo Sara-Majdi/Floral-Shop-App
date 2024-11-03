@@ -8,22 +8,22 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between">
           <div className="mb-4 md:mb-0">
             <h2 className="text-lg font-bold">SoRa Flora</h2>
-            <p className="text-sm mt-1">Your one-stop shop for beautiful flowers.</p>
+            <p className="text-sm">Your one-stop shop for beautiful flowers.</p>
           </div>
 
           <div className="flex flex-col md:flex-row">
             <div className="mr-6">
-              <h3 className="font-semibold mb-2">Links</h3>
+              <h3 className="font-semibold">Links</h3>
               <ul>
                 <li><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
-                <li><a href="/about" className="text-gray-400 hover:text-white">About Us</a></li>
-                <li><a href="/shop" className="text-gray-400 hover:text-white">Shop</a></li>
-                <li><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="/contactUs" className="text-gray-400 hover:text-white">Contact Us</a></li>
+                <li><a href="/faqs" className="text-gray-400 hover:text-white">FAQs</a></li>
+                <li><a href="/contact" className="text-gray-400 hover:text-white">Store Locator</a></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-2">Follow Us</h3>
+              <h3 className="font-semibold mt-2 mb-2">Follow Us</h3>
               <div className="flex space-x-4">
                 <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                   <FaFacebook className="text-gray-400 hover:text-white" />

@@ -10,18 +10,28 @@ const items = [
         answer: "We accept all major credit cards, PayPal, and various other payment methods depending on your location. Please contact our support team for more information on accepted payment methods in your region.",
     },
     {
-        question: "How does the pricing work for teams?",
-        answer: "Our pricing is per user, per month. This means you only pay for the number of team members you have on your account. Discounts are available for larger teams and annual subscriptions.",
+        question: "What flowers & gifts can I get?",
+        answer: "We offer flowers & gifts in all designs and occasions. For a classic gift, go for our popular flower bouquets & long boxes. If you want something premium, we recommend our basket & boxes flowers.",
     },
     {
-        question: "Can I change my plan later?",
+        question: "How do I make an order?",
         answer:
-          "Yes, you can upgrade or downgrade your plan at any time. Changes to your plan will be prorated and reflected in your next billing cycle.",
+          "First time shopping with BloomThis? We’re ecstatic to have you on board! Just visit our website at bloomthis.co to place your order. It only takes 5 easy steps & 3 minutes!",
       },
       {
-        question: "Is my data secure?",
+        question: "Can I order with phone/chat/WhatsApp?",
         answer:
-          "Security is our top priority. We use state-of-the-art encryption and comply with the best industry practices to ensure that your data is stored securely and accessed only by authorized users.",
+          "You’ll have to make your order online on the BloomThis website at bloomthis.co to enjoy the best shopping experience. However, if you need help, we’re always happy to assist on phone, chat or WhatsApp.",
+      },
+      {
+        question: "Can I change my order details?",
+        answer:
+          "Yes, you can but you’ll need to inform us ASAP. If you’d like to change your order details, please email us at contact@sorafloral.com with your new order details.",
+      },
+      {
+        question: "Can I cancel my order?",
+        answer:
+          "Yes, you can cancel your order by e-mailing us at contact@sorafloral.com by 10 AM one day before your pick-up date. Upon confirmation by our Customer Service, your payment will then be refunded to you in online transer ONLY.",
       },
 ]
 
@@ -57,6 +67,10 @@ const AccordionItem = ({ question, answer }) => {
                     height: 0,
                     marginTop: 0,
                 }}
+                transition={{
+                    duration: 0.3, // Adjust for smoother opening/closing
+                    ease: [0.4, 0, 0.2, 1], // Smooth ease-in-out effect
+                }}
                 >
                     <div 
                         className='ml-2  mt-[-12px] mb-4'>{answer}
@@ -77,8 +91,9 @@ const AccordionItem = ({ question, answer }) => {
 const FAQ = () => {
   return (
     <div className='mt-9'>
-        <div className='h-12 bg-pink-300 text-lg text-white font-bold flex justify-center items-center'>
-            FAQs
+        <div className="text-center mb-8">
+            <h2 className="text-3xl font-semibold">FAQs</h2>
+            <p className="text-md mt-2">Find answers to our most common questions below. If you have further inquiries, feel free to reach out to us.</p>
         </div>
         <div>
           {/* Map through the items array to render AccordionItem components */}

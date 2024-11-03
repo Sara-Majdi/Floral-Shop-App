@@ -14,7 +14,7 @@ function App() {
       <Navbar/>
       <Carousel/>
       <BestSeller/>
-      <FAQ/>
+      <CategorySection/>
       <ContactUsSection/>
       <Footer/>
       

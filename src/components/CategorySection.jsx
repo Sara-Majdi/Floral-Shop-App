@@ -1,89 +1,67 @@
-import { useCallback, useEffect, useState } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-import AutoScroll from 'embla-carousel-auto-scroll'
-import { ChevronLeft, ChevronRight, CirclePause, CirclePlay } from 'lucide-react'
+import React from 'react'
+import { Link } from 'react-router-dom';
 
 const CategorySection = () => {
-    // Static product data
-    const staticProducts = [
+
+    const products = [
         {
-            _id: 1,
-            productName: 'Shoe 1',
-            productPrice: '120.00',
-            productImages: ['shoe1_front.jpg', 'shoe1_back.jpg'],
-            productTags: 'newArrivals'
+          id: 1,
+          imageUrl: 'https://bloomthis.co/cdn/shop/products/bloomthis-bouquet-esther-white-1080x1080-01.jpg?v=1571562321&width=1000',
+          title: 'Product 1',
+          buttonText: 'Shop Flower Bouquets',
+          link: '/bouquet'
         },
         {
-            _id: 2,
-            productName: 'Shoe 2',
-            productPrice: '140.00',
-            productImages: ['shoe2_front.jpg', 'shoe2_back.jpg'],
-            productTags: 'bestSelling'
+          id: 2,
+          imageUrl: 'https://bloomthis.co/cdn/shop/products/bloomthis-vase-marisol-1080x1080-01.jpg?v=1586936495&width=1000',
+          title: 'Product 2',
+          buttonText: 'Shop Vase Series',
+          link: '/vase'
         },
-    ]
+        {
+            id: 2,
+            imageUrl: 'https://50gram.com.my/wp-content/uploads/2024/03/Pink-Serenity-1-1024x1024.jpg.webp',
+            title: 'Product 2',
+            buttonText: 'Shop Basket Series',
+            link: '/basket'
+        },
+        {
+            id: 4,
+            imageUrl: 'https://bloomthis.co/cdn/shop/products/bloomthis-hat-box-nadine-pink-carnation-flower-box-1080x1080-05.jpg?v=1632935398&width=1000',
+            title: 'Product 2',
+            buttonText: 'Shop Box Series',
+            link: '/box'
+          },
+      ];
 
-    const [hoveredProduct, setHoveredProduct] = useState({})
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [emblaRef, emblaApi] = useEmblaCarousel({}, [AutoScroll({ playOnInit: true })])
 
-    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
-    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
-    const toggleAutoplay = useCallback(() => {
-        const autoScroll = emblaApi?.plugins()?.autoScroll
-        if (!autoScroll) return
-        autoScroll.isPlaying() ? autoScroll.stop() : autoScroll.play()
-    }, [emblaApi])
 
-    useEffect(() => {
-        const autoScroll = emblaApi?.plugins()?.autoScroll
-        if (autoScroll) {
-            setIsPlaying(autoScroll.isPlaying())
-            emblaApi.on('autoScroll:play', () => setIsPlaying(true))
-            emblaApi.on('autoScroll:stop', () => setIsPlaying(false))
-        }
-    }, [emblaApi])
-
-    return (
-        <div className='relative'>
-            <h1 className='text-center py-6 font-inter text-5xl font-bold italic text-white hover:text-black bg-violet3'>New Arrivals</h1>
-            <div className="embla">
-                <div className="embla__viewport" ref={emblaRef}>
-                    <div className="embla__container">
-                        {staticProducts.map((product) => (
-                            <div className="embla__slide m-4" key={product._id}>
-                                <div className="w-[520px] flex flex-col items-center rounded-lg border h-full relative"
-                                    onMouseEnter={() => setHoveredProduct(prevState => ({ ...prevState, [product._id]: true }))}
-                                    onMouseLeave={() => setHoveredProduct(prevState => ({ ...prevState, [product._id]: false }))}>
-                                    
-                                    <img
-                                        src={hoveredProduct[product._id] ? product.productImages[1] : product.productImages[0]}
-                                        alt="Product"
-                                        width={320}
-                                    />
-                                    <div className="flex justify-between w-full px-4 py-4">
-                                        <p>{product.productName.toUpperCase()}</p>
-                                        <p>RM {product.productPrice}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="embla__controls flex justify-center mt-8">
-                    <button onClick={scrollPrev} className="p-2">
-                        <ChevronLeft />
-                    </button>
-                    <button onClick={toggleAutoplay} className="p-2">
-                        {isPlaying ? <CirclePause /> : <CirclePlay />}
-                    </button>
-                    <button onClick={scrollNext} className="p-2">
-                        <ChevronRight />
-                    </button>
-                </div>
-            </div>
+  return (
+    <div className='mt-9'>
+        <div className='h-12 w-full bg-pink-300 text-lg text-white font-bold flex justify-center items-center'>
+            Categories
         </div>
-    )
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4'>
+        {products.map((product) => (
+          <div key={product.id} className='relative border rounded-lg overflow-hidden shadow-lg'>
+            <img
+              src={product.imageUrl}
+              alt={product.title}
+              className='w-full h-60 object-cover'
+            />
+            <div className='absolute bottom-0 left-0 right-0 bg-white bg-opacity-45 text-center py-2'>
+              <Link to={product.link}>
+                <button className='bg-pink-500 text-white px-4 py-2 mt-1 rounded'>
+                  {product.buttonText}
+                </button>
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+        
+    </div>
+  )
 }
 
 export default CategorySection

@@ -1,16 +1,16 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import VaseProductList from '../components/VaseProductList'
+import FlowerCareVase from '../components/FlowerCareVase'
 
-function Vase() {
+const FlowerCareVasePage = () => {
   return (
     <div>
         <Navbar/>
-        <VaseProductList/>
+        <FlowerCareVase/>
         <Footer/>
     </div>
   )
 }
 
-export default Vase
+export default FlowerCareVasePage

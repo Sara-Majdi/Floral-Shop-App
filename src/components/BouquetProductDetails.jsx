@@ -1,5 +1,5 @@
-import React, { useState }  from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useParams } from 'react-router-dom';
 import BouquetA1 from '../assets/images/Bouquet/BouquetA1.jpg';
 import BouquetA2 from '../assets/images/Bouquet/BouquetA2.jpg';
 import BouquetA3 from '../assets/images/Bouquet/BouquetA3.jpg';
@@ -21,8 +21,7 @@ import BouquetF1 from '../assets/images/Bouquet/BouquetF1.jpg';
 import BouquetF2 from '../assets/images/Bouquet/BouquetF2.jpg';
 import BouquetF3 from '../assets/images/Bouquet/BouquetF3.jpg';
 
-// Sample product data
-// creating product object where each product has it's own details 
+// Sample product data for fetching the product details based on id
 const products = [
   {
     id: 1,
@@ -80,104 +79,88 @@ const products = [
   },
 ];
 
-const ProductList = () => {
-  //state setup
-  const [selectedOption, setSelectedOption] = useState('default');
-  const [product, setProduct] = useState(products);
+const BouquetProductDetails = () => {
+  const { id } = useParams(); // Get the product id from the URL
+  const product = products.find((product) => product.id === parseInt(id)); // Find the product by id
 
+// State to track the currently displayed main image
+const [mainImage, setMainImage] = useState(product ? product.images[0] : null);
 
-  //handles changes every time user selects new sorting option from dropdown
-  const handleSortChange = (event) => {
-    setSelectedOption(event.target.value);
-
-    //Creating a copy of "Products" to sort
-    let sortedProducts = [...product];
-
-    // HOW IT WORKS?
-    if (event.target.value === 'price-low-high') {
-      //sort() method compares each product's price
-      //"price" values are strings (eg, "RM79.00")
-      //"replace()" method remove the "RM" part
-      //"parseFloat()" converts the remaining string to a number (eg, 79.00)
-      // the products are sorted by comparing their prices in ascending order
-      sortedProducts.sort((a, b) => parseFloat(a.price.replace('RM', '')) - parseFloat(b.price.replace('RM', ''))); // Sort by price: Low to High
-    } else if (event.target.value === 'price-high-low') {
-      sortedProducts.sort((a, b) => parseFloat(b.price.replace('RM', '')) - parseFloat(a.price.replace('RM', ''))); // Sort by price: High to Low
-    } else if (event.target.value === 'bestsellers') {
-      //filter() method is used to return new array contains "isBestseller" is "true"
-      sortedProducts = products.filter((product) => product.isBestseller); // Filter bestsellers
-    } else {
-      // Reset to original product list (the original list of products are copied into "sortedProducts")
-      sortedProducts = [...products]; 
-    }
-
-    setProduct(sortedProducts); // Update the state with the sorted/filtered products
-  };
+  if (!product) {
+    return <div>Product not found!</div>;
+  }
 
   return (
-    <div className='p-4'>
-      <div className="w-full max-w-lg font-inter rounded-md pb-8 text-center">
-          <h2 className="text-3xl font-semibold">Flower Bouquets</h2>
-          <p className="text-md mt-2 text-center">
-            Unique seasonal flowers hand-arranged in premium
-          </p>
-      </div>
-      <div >
-        <h1 className=''>Sort By:</h1>
-        <div className="flex justify-between items-center mt-4 mb-4">
+    <div className="p-0">
+      <div className="flex flex-col items-left">
 
-        {/* renders dropdown list of sorting option */}
-        <select
-          value={selectedOption} //ensure dropdown show correct and the current selected option
-          onChange={handleSortChange}
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm"
-        >
-          <option value="default">Default</option>
-          <option value="price-low-high">Price: Low to High</option>
-          <option value="price-high-low">Price: High to Low</option>
-          <option value="bestsellers">Bestsellers</option>
-        </select>
+        {/* Display Main Image */}
+        <div className='relative mt-4'>
+          <img src={mainImage} alt={product.name} className="mb-4" />
+          {product.isBestseller && (
+              <span className="absolute top-2 left-2 bg-pink-600 text-white px-4 py-2 text-xs font-semibold rounded-full">
+                Bestseller
+              </span>
+            )}
         </div>
-      </div>
 
-      {/* Card UI */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-9">
-        {/* going through evrey single product in the "products object" */}
-        {product.map((product) => (
-
-          // Navigate to Product Detail Page
-          <Link to={`/product/${product.id}`} key={product.id}>
-          
-          
-
-          <div className="block border rounded-lg overflow-hidden shadow hover:shadow-lg transition-all duration-300 p-4">
-            <div className="relative w-full h-[200px] overflow-hidden mb-2"> {/* Fixed height for the image container */}
-
-              {/* Bestseller Tag */}
-              {product.isBestseller && (
-                <span className="absolute top-2 left-2 bg-pink-600 text-white px-2 py-1 text-xs rounded-full z-10">
-                  Bestseller
-                </span>
-              )}
-              <img 
-                src={product.images[0]} //use the first img in the array 
-                alt={product.name} 
-                className="w-full h-full object-cover transition-all duration-300"
+          {/* Display Small Images */}
+          <div className='flex space-x-4 mb-2 px-4'>
+            {product.images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`${product.name} thumbnail ${index + 1}`}
+                className="w-10 h-10 cursor-pointer"
+                onClick={() => setMainImage(image)} // Set main image on click
               />
-            </div>
+            ))}
+          </div>
+
+          <div className="text-left my-6 px-4">
             <div>
-              <h3 className="font-semibold text-lg mt-2">{product.name}</h3>
-              <p className="text-gray-400 font-semibold">{product.price}</p>
+              {/* Product Name */}
+              <h1 className="text-3xl font-semibold text-gray-800 mb-1">{product.name}</h1>
+
+              <p className="text-md text-gray-400 font-medium mb-26">Self-Pickup</p>
+
+              <div className="flex items-center justify-between mb-6">
+                
+                {/* Product Price */}
+                <p className="text-2xl text-gray-600 font-medium">{product.price}</p>
+
+                {/* Add to Cart Button */}
+                <button className="bg-pink-600 text-white text-md font-semibold px-8 py-2 rounded-full shadow-lg">
+                  ADD TO CART
+                </button>
+                
+              </div>
+              <hr className='border-t-2 border-gray-300 my-12 w-full'></hr>
             </div>
           </div>
-          </Link>
-        ))}
+
+          {/* Decription Section */}
+          <div className='mb-8 mt-[-38px]'>
+            <div className="w-full px-4 md:px-8">
+              <h2 className="text-lg font-bold mt-6 mb-2 text-gray-700">Description:</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">{product.description}</p>
+              
+              <h2 className="text-lg font-bold mb-2 text-gray-700">Stems Include:</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">{product.stemsInclude}</p>
+              
+              <h2 className="text-lg font-bold mb-2 text-gray-700">Lifespan:</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">2 - 4 days</p>
+              
+              <h2 className="text-lg font-bold mb-2 text-gray-700">Comes With:</h2>
+              <ul className="list-disc list-inside text-gray-600 leading-relaxed mb-4">
+                <li>Free Message Card</li>
+                <li>Free Delivery</li>
+              </ul>
+            </div>
+          </div>
       </div>
-
     </div>
-
-    
   );
 };
 
-export default ProductList;
+export default BouquetProductDetails;

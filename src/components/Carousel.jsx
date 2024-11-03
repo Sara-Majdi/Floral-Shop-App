@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io'
 import { GoDotFill } from "react-icons/go";
 
@@ -39,6 +39,15 @@ const Carousel = () => {
     const goToSlide = (slideIndex) => {
         setCurrentIndex(slideIndex)
     }
+
+    // Auto slide effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 3000); // Change slides every 3 seconds
+
+        return () => clearInterval(interval); // Clear the interval on component unmount
+    }, [currentIndex]); // Effect runs when currentIndex changes
 
 
 
